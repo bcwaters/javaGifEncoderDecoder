@@ -43,4 +43,13 @@ public class ImageData extends ValidData {
 		
 	}
 
+	@Override
+	public void encode(EncoderData _encoderBytes) {
+		for(int i = 0; i< compressionBytes.size(); i++)
+		{
+			_encoderBytes.addByte(compressionBytes.get(i));
+		}
+		
+	}
+
 }

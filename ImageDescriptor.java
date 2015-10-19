@@ -71,4 +71,13 @@ public class ImageDescriptor extends ValidData {
 	return temp + "\n";
 	}
 
+	@Override
+	public void encode(EncoderData _encoderBytes)
+	{
+		for(int i = 0; i<localData.length; i++)
+		{
+			_encoderBytes.addByte((byte)localData[i]);
+		}
+	}
+
 }

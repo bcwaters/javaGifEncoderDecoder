@@ -1,6 +1,6 @@
 //DONE
 
-public class LogicalScreenDescriptor {
+public class LogicalScreenDescriptor implements Encodable{
 
 	int[] localData = new int[7];
 	int packedByte;
@@ -52,6 +52,15 @@ public class LogicalScreenDescriptor {
 		
 		return bytesNeeded;
 	}
+	
+	public void encode(EncoderData _encoderBytes)
+	{
+		for(int i = 0; i<localData.length; i++)
+		{
+			_encoderBytes.addByte((byte)localData[i]);
+		}
+	}
+	
 	
 	public String toString()
 	{

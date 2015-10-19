@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class LocalData {
+public class LocalData implements Encodable{
 	
 	final byte EXTENSION_INTRODUCER = 0x21 ;
 	final byte TRAILER = 0x3B;
@@ -87,6 +87,15 @@ public class LocalData {
 			temp += DataBlocks.get(i);
 		}
 		return temp + "\n";
+	}
+
+	@Override
+	public void encode(EncoderData _encoderBytes) {
+		for(ValidData valid : DataBlocks)
+		{
+			valid.encode(_encoderBytes);
+		}
+		
 	}
 
 }

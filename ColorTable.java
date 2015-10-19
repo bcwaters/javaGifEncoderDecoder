@@ -1,3 +1,5 @@
+import java.util.Random;
+
 //DONE
 //REMOVED the actual color array for now, extra bulk with no payoff
 public class ColorTable extends ValidData {
@@ -23,6 +25,14 @@ public class ColorTable extends ValidData {
 		return localData;
 	}
 	
+	public void scrambleTable()
+	{
+		
+			 new Random().nextBytes(localData);
+		
+	}
+	
+	
 	/*
 		private void setColorTable()
 		{
@@ -44,5 +54,14 @@ public class ColorTable extends ValidData {
 	for(int i = 0; i< localData.length; i++)
 		temp += Integer.toHexString(Byte.toUnsignedInt(localData[i])) + " ";
 	return temp;
+	}
+
+	@Override
+	public void encode(EncoderData _encoderBytes) {
+		for(int i = 0; i< localData.length; i++)
+		{
+			_encoderBytes.addByte(localData[i]);
+		}
+		
 	}
 }

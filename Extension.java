@@ -24,6 +24,13 @@ public class Extension extends ValidData {
 		}
 	}
 	
+	public void encode(EncoderData _encoderBytes) {
+		for(int i = 0; i< localData.size(); i++)
+		{
+			_encoderBytes.addByte(localData.get(i));
+		}
+	}
+	
 	protected void getAllBlocks(GifData _byteData)
 	{
 		while(_byteData.peek() !=0)

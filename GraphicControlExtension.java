@@ -1,12 +1,13 @@
 public class GraphicControlExtension extends Extension {
 
-	byte[] localDataArray = new byte[8];
+	
 
 	public GraphicControlExtension(GifData _byteData)
 	{
 		//This precedes any extension
 		super(_byteData);	
 	}
+	
 	
 	public String toString()
 	{

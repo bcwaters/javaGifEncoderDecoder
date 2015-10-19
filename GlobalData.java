@@ -1,6 +1,6 @@
 //DONE
 
-public class GlobalData {
+public class GlobalData implements Encodable {
 
 	private byte[] header = new byte[6];
 	private ColorTable GlobalColorTable;
@@ -43,9 +43,28 @@ public class GlobalData {
 		return screenDescriptor;
 	}
 	
+	public void scrambleTable()
+	{
+		GlobalColorTable.scrambleTable();
+	}
+	
 	public byte[] getHeader()
 	{
 		return header;
+	}
+	
+	public void encode(EncoderData _encoderBytes) {
+		for(int i = 0; i< header.length; i++)
+		{
+			_encoderBytes.addByte(header[i]);
+		}
+		screenDescriptor.encode(_encoderBytes);
+		
+		if(screenDescriptor.getGlobalTableFlag())
+		{
+			GlobalColorTable.encode(_encoderBytes);
+		}
+		
 	}
 
 	public String toString()

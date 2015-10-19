@@ -1,4 +1,4 @@
-public abstract class ValidData {
+public abstract class ValidData implements Encodable {
 
 	
 	
@@ -6,8 +6,6 @@ public abstract class ValidData {
 	{
 		return "";
 	}
-	public byte encode() {
-		return 0;
-	}
+	
 
 }

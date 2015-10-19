@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
-public class Gif {
+public class Gif implements Encodable {
 
 	final byte EXTENSION_INTRODUCER = 0x21 ;
 	final byte TRAILER = 0x3B;
@@ -38,12 +38,12 @@ public class Gif {
 			
 			//debuging
 			writeFile();
-			
-			
-			System.out.println(global);
-			System.out.println(local);
+			//System.out.println(global);
+			//System.out.println(local);
 			
 	}
+	
+	
 	public void writeFile()
 	{
 		PrintWriter writer = null;
@@ -68,6 +68,31 @@ public class Gif {
 	
 	}
 	
+	public byte[] encode()
+	{
+		EncoderData encodedData = new EncoderData();
+		encode(encodedData);
+		//add trailer
+		encodedData.addByte((byte) 0x3B);
+		byte[] temp = new byte[encodedData.byteData.size()];
+		for(int i =0; i<encodedData.byteData.size(); i++)
+		{
+			temp[i] = encodedData.byteData.get(i);
+		}
+		return temp;
+	}
+	
+	public void scrambleTable()
+	{
+		global.scrambleTable();
+	}
+	
+	public void encode(EncoderData _encoderBytes)
+	{
+		global.encode(_encoderBytes);
+		local.encode(_encoderBytes);
+		
+	}
 	
 	public byte[] loadFile(String FileName) throws IOException
 	{
@@ -75,7 +100,7 @@ public class Gif {
 		FileInputStream in = null;
 		
 	        try {
-	        	File file = new File("src//Res//square.gif");
+	        	File file = new File("src//Res//" + FileName);
 	            in = new FileInputStream(file);
 	            bFile = new byte[(int) file.length()];
 	            in.read(bFile);
