@@ -4,8 +4,6 @@ import java.util.ArrayList;
 public class ImageData extends ValidData {
 
 	private ColorTable LocalColorTable;
-
-
 	private ArrayList<Byte> compressionBytes;
 	
 	public ImageData(GifData _byteData, ColorTable _LocalColorTable)

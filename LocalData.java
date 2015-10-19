@@ -6,6 +6,9 @@ public class LocalData {
 	final byte TRAILER = 0x3B;
 	final byte IMAGE_SEPARATOR = 0x2C;
 	final byte GRAPHIC_CONTROL_LABEL = (byte) 0xF9;
+	final byte APPLICATION_EXTENSION = (byte)0xFF;
+	final byte PLAINTEXT_EXTENSION = 0x01;
+	final byte COMMENT_EXTENSION = (byte)0xFE;
 
 	private ArrayList<ValidData> DataBlocks;
 	private GlobalData GlobalDataReference;
@@ -20,7 +23,6 @@ public class LocalData {
 	public boolean addDataBlock(GifData _byteData )
 	{
 		byte dataType = _byteData.peek();
-		
 		switch(dataType)
 		{
 			//Image Descriptor
@@ -64,6 +66,16 @@ public class LocalData {
 		{
 		case(GRAPHIC_CONTROL_LABEL):
 			DataBlocks.add(new GraphicControlExtension(_byteData));
+			break;
+		case(APPLICATION_EXTENSION):
+			DataBlocks.add(new ApplicationExtension(_byteData));
+			break;
+		case(PLAINTEXT_EXTENSION):
+			DataBlocks.add(new PlainTextExtension(_byteData));
+			break;
+		case(COMMENT_EXTENSION):
+			DataBlocks.add(new CommentExtension(_byteData));
+			break;
 		}
 	}
 	

@@ -6,7 +6,7 @@ public class Driver {
 		// TODO Auto-generated method stub
 
 		Gif test = new Gif("bobo");
-		
+		System.out.println("DONE");
 	}
 
 }

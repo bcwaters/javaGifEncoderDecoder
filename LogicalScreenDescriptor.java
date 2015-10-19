@@ -55,7 +55,7 @@ public class LogicalScreenDescriptor {
 	
 	public String toString()
 	{
-	String temp = "LOGICAL SCREEN DESCRIPOTR : ";
+	String temp = "LOGICAL SCREEN DESCRIPTOR : ";
 	for(int i = 0; i< localData.length; i++)
 		temp += Integer.toHexString((localData[i])) + " ";
 	return temp + "\n   TableSize: " + getGlobalColorTableSize() + "\n";

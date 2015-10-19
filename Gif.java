@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 public class Gif {
 
@@ -34,9 +36,38 @@ public class Gif {
 				System.out.println("ERROR IN LOADING FILE");
 			}
 			
+			//debuging
+			writeFile();
+			
+			
 			System.out.println(global);
 			System.out.println(local);
+			
 	}
+	public void writeFile()
+	{
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter("GIF_OUTPUT.txt", "UTF-8");
+			writer.println(global.toString());
+			writer.println(local.toString());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("ERROR");
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			System.out.println("ERROR2");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(writer != null)
+		{
+			writer.close();
+		}
+	
+	}
+	
 	
 	public byte[] loadFile(String FileName) throws IOException
 	{
@@ -44,7 +75,7 @@ public class Gif {
 		FileInputStream in = null;
 		
 	        try {
-	        	File file = new File("src//Res//testGimp.gif");
+	        	File file = new File("src//Res//square.gif");
 	            in = new FileInputStream(file);
 	            bFile = new byte[(int) file.length()];
 	            in.read(bFile);
