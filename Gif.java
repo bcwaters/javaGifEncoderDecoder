@@ -37,7 +37,7 @@ public class Gif implements Encodable {
 			}
 			
 			//debuging
-			writeFile();
+			//writeFile();
 			//System.out.println(global);
 			//System.out.println(local);
 			

@@ -5,16 +5,20 @@ public class ImageData extends ValidData {
 
 	private ColorTable LocalColorTable;
 	private ArrayList<Byte> compressionBytes;
+	ImageDescriptor LocalDescriptor;
+	static int count = 0;
 	
-	public ImageData(GifData _byteData, ColorTable _LocalColorTable)
+	public ImageData(GifData _byteData, ColorTable _LocalColorTable, ImageDescriptor _localDescriptor)
 	{
 		LocalColorTable = _LocalColorTable;
+		LocalDescriptor = _localDescriptor;
 		compressionBytes = new ArrayList<Byte>();
 		compressionBytes.add(_byteData.getNextByte());
 		
 		while(_byteData.peek() !=0)
 		addSubBlock(_byteData);
 		compressionBytes.add(_byteData.getNextByte());
+		count++;
 	}
 	
 	private void addSubBlock(GifData _byteData)
@@ -29,7 +33,17 @@ public class ImageData extends ValidData {
 		}
 	}
 	
-	public byte getLWZ_Minimum()
+	public ColorTable getColorTable(){
+		
+		return LocalColorTable;
+	}
+	
+	public ArrayList<Byte> getLocalData()
+	{
+		return compressionBytes;
+	}
+	
+	public byte getLZW_Minimum()
 	{
 		return compressionBytes.get(0);
 	}

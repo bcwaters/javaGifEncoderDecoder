@@ -54,7 +54,10 @@ public class LocalData implements Encodable{
 		{
 			tempTable = GlobalDataReference.getGlobalColorTable();
 		}
-		DataBlocks.add(new ImageData(_byteData, tempTable));
+		ImageData newImage = new ImageData(_byteData, tempTable, tempDescriptor);
+		DataBlocks.add(newImage);
+		if(ImageData.count == 1)
+		LZWTranslator.decompress(newImage);
 	}
 	
 	public void addExtension(GifData _byteData)

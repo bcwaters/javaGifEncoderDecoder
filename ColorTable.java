@@ -33,20 +33,7 @@ public class ColorTable extends ValidData {
 	}
 	
 	
-	/*
-		private void setColorTable()
-		{
-			int i = 0;
-			int colorIndex = 0;
-			while(i<data.length)
-			{
-				Color temp = new Color(data[i], data[i+1], data[i+2]);
-				colors[colorIndex] = temp;
-			}
-			i = i+3;
-			colorIndex++;
-		}
-		*/
+	
 	
 	public String toString()
 	{
