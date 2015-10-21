@@ -10,18 +10,18 @@ import java.util.HashMap;
 public abstract class LZWTranslator {
 
 	static HashMap<Integer, ArrayList<Integer>> codeTable;
-	static Color[] colors;
+	static Color_Gif[] color_Gifs;
 	
 	private static void setColors( ColorTable colorTable)
 	{
-		colors = new Color[colorTable.getTable().length/3];
+		color_Gifs = new Color_Gif[colorTable.getTable().length/3];
 		byte[] data = colorTable.getTable();
 		int i = 0;
 		int colorIndex = 0;
 		while(i<data.length)
 		{
-			Color temp = new Color(data[i], data[i+1], data[i+2]);
-			colors[colorIndex] = temp;
+			Color_Gif temp = new Color_Gif(data[i], data[i+1], data[i+2]);
+			color_Gifs[colorIndex] = temp;
 			i = i+3;
 			colorIndex++;
 			//System.out.println("Color added: "+ temp.getHexString());
@@ -32,7 +32,7 @@ public abstract class LZWTranslator {
 	private static void initializeCodeTable()
 	{
 		codeTable = new HashMap<Integer, ArrayList<Integer>>();
-		for(int i = 0; i<colors.length; i++)
+		for(int i = 0; i<color_Gifs.length; i++)
 		{
 			ArrayList<Integer> temp = new ArrayList<Integer>();
 			temp.add(i);
@@ -176,7 +176,7 @@ public abstract class LZWTranslator {
 	
 	private static int convertColorToInt(int colorIndex)
 	{
-		Color thisColor = colors[colorIndex];
+		Color_Gif thisColor = color_Gifs[colorIndex];
 		int red = Byte.toUnsignedInt(thisColor.getRed());
 		int blue = Byte.toUnsignedInt(thisColor.getBlue());
 		int green = Byte.toUnsignedInt(thisColor.getGreen());

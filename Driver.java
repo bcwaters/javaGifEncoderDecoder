@@ -11,19 +11,16 @@ public class Driver {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Gif test = new Gif("SMILE.gif");
+		Gif test = new Gif("200.gif");
 		System.out.println("DONE");
 		
 		
-		//test.scrambleTable();
+		test.scrambleTable();
 		byte[] testEncode = test.encode();
-		int[][] decoded = test.decode();
+		//int[][] decoded = test.decode();
 		
 		
-		for(int i = 0; i<testEncode.length; i++)
-		{
-			System.out.print(Integer.toHexString(Byte.toUnsignedInt(testEncode[i])) + " ");
-		}
+	
 		
 		
 		
@@ -48,16 +45,18 @@ public class Driver {
 					e.printStackTrace();
 				}
 			
+			/*
 			try{
 	            BufferedImage img = new BufferedImage( 
-	                15, 15, BufferedImage.TYPE_INT_RGB );
+	                10, 10, BufferedImage.TYPE_INT_RGB );
 
 	            File f = new File("MyFile.png");
 	           
 	            
-	            for(int x = 0; x < 15; x++){
-	                for(int y = 0; y < 15; y++){
+	            for(int x = 0; x < 10; x++){
+	                for(int y = 0; y < 10; y++){
 	                    img.setRGB(x, y, decoded[y][x]);
+	                    
 	                }
 	            }
 	            ImageIO.write(img, "PNG", f);
@@ -66,8 +65,10 @@ public class Driver {
 	            e.printStackTrace();
 	        }
 			
-			
-			System.out.println(Integer.toHexString(decoded[0][0]));
+			System.out.println();
+			float[] hsv = ColorConverter.rgbToHsv(new Color_Gif(decoded[6][0]));
+			System.out.println(hsv[0] + " " + hsv[1] + " " + hsv[2]);
+			*/
 	}
 
 }

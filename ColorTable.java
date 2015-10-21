@@ -28,7 +28,32 @@ public class ColorTable extends ValidData {
 	public void scrambleTable()
 	{
 		
-			 new Random().nextBytes(localData);
+			 
+		Color_Gif[] color_Gifs = new Color_Gif[this.getTable().length/3];
+		byte[] data = this.getTable();
+		int i = 0;
+		int colorIndex = 0;
+		while(i<data.length)
+		{
+			Color_Gif temp = new Color_Gif(data[i], data[i+1], data[i+2]);
+			color_Gifs[colorIndex] = temp;
+			i = i+3;
+			colorIndex++;
+			//System.out.println("Color added: "+ temp.getHexString());
+		}
+		int counter = 0;
+		for(int ix = 0; ix<color_Gifs.length; ix++)
+		{
+			color_Gifs[ix] = new Color_Gif(ColorConverter.rgbToPalleteMatch(color_Gifs[ix].getIntValue()));
+			localData[counter] = color_Gifs[ix].getRed();
+			localData[counter+1] = color_Gifs[ix].getGreen();
+			localData[counter+2] = color_Gifs[ix].getBlue();
+			counter = counter + 3;
+		}
+		
+	
+		
+		//new Random().nextBytes(localData);
 		
 	}
 	
