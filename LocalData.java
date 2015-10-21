@@ -57,9 +57,17 @@ public class LocalData implements Encodable{
 		ImageData newImage = new ImageData(_byteData, tempTable, tempDescriptor);
 		DataBlocks.add(newImage);
 		if(ImageData.count == 1)
-		LZWTranslator.decompress(newImage);
+			tempDeleteThis = newImage;
+		
 	}
 	
+	ImageData tempDeleteThis = null;
+	
+	public int[][] decode()
+	{
+		
+			return LZWTranslator.decompress(tempDeleteThis);
+	}
 	public void addExtension(GifData _byteData)
 	{
 		//TOSS THIS BYTE, every extension class knows to add this byte

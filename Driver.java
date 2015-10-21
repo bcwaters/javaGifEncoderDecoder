@@ -1,6 +1,10 @@
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Driver {
 
@@ -10,15 +14,17 @@ public class Driver {
 		Gif test = new Gif("SMILE.gif");
 		System.out.println("DONE");
 		
-		test.scrambleTable();
+		
+		//test.scrambleTable();
 		byte[] testEncode = test.encode();
-		/*
+		int[][] decoded = test.decode();
+		
 		
 		for(int i = 0; i<testEncode.length; i++)
 		{
 			System.out.print(Integer.toHexString(Byte.toUnsignedInt(testEncode[i])) + " ");
 		}
-		*/
+		
 		
 		
 		
@@ -42,9 +48,26 @@ public class Driver {
 					e.printStackTrace();
 				}
 			
-		
-		 
-		
+			try{
+	            BufferedImage img = new BufferedImage( 
+	                15, 15, BufferedImage.TYPE_INT_RGB );
+
+	            File f = new File("MyFile.png");
+	           
+	            
+	            for(int x = 0; x < 15; x++){
+	                for(int y = 0; y < 15; y++){
+	                    img.setRGB(x, y, decoded[y][x]);
+	                }
+	            }
+	            ImageIO.write(img, "PNG", f);
+	        }
+	        catch(Exception e){
+	            e.printStackTrace();
+	        }
+			
+			
+			System.out.println(Integer.toHexString(decoded[0][0]));
 	}
 
 }

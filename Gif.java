@@ -94,6 +94,11 @@ public class Gif implements Encodable {
 		
 	}
 	
+	public int[][] decode()
+	{
+		return local.decode();
+	}
+	
 	public byte[] loadFile(String FileName) throws IOException
 	{
 		byte[] bFile;

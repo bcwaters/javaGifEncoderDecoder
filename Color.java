@@ -24,4 +24,12 @@ public class Color {
 		return green;
 	}
 
+	public String getHexString()
+	{
+		String temp = Integer.toHexString(Byte.toUnsignedInt(red)<<16 | Byte.toUnsignedInt(green)<<8 | Byte.toUnsignedInt(blue));
+		temp+="\nred :" + Integer.toHexString(Byte.toUnsignedInt(red));
+		temp+="\ngreen :" + Integer.toHexString(Byte.toUnsignedInt(green));
+		temp+="\nblue :" + Integer.toHexString(Byte.toUnsignedInt(blue));
+		return temp;
+	}
 }

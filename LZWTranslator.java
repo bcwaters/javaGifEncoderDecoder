@@ -7,7 +7,7 @@ import java.util.HashMap;
 //This class will be refactored for performance improvement
 //most likely to be broken up into LZWEncoder and LZWDecoder
 //But for now this is used as a proof of concept
-public class LZWTranslator {
+public abstract class LZWTranslator {
 
 	static HashMap<Integer, ArrayList<Integer>> codeTable;
 	static Color[] colors;
@@ -24,6 +24,7 @@ public class LZWTranslator {
 			colors[colorIndex] = temp;
 			i = i+3;
 			colorIndex++;
+			//System.out.println("Color added: "+ temp.getHexString());
 		}
 		
 	}
@@ -53,7 +54,7 @@ public class LZWTranslator {
 		int EOF = clearCode + 1;
 		int height = _compressedData.LocalDescriptor.getImageHeight();
 		int width = _compressedData.LocalDescriptor.getImageWidth();
-		int[][] uncompressedData = new int[width][height];
+		int[][] uncompressedData = new int[height][width];
 		//initializeCodeTable();
 		int nextCode = EOF+1;
 		setColors(_compressedData.getColorTable());
@@ -159,17 +160,32 @@ public class LZWTranslator {
 			}
 		
 			int currentPixel = 0;
+			System.out.println("\nHeight:" + height + " width:" + width);
 			for(int i = 0; i<height; i++)
 			{
-				for(int j = 0; i<width; j++)
+				for(int j = 0; j<width; j++)
 				{
-					uncompressedData[i][j] = tableConversion.get(currentPixel);
+					uncompressedData[i][j] = convertColorToInt(tableConversion.get(currentPixel));
 					currentPixel++;
 				}
 			}
 		
 		
 		return uncompressedData;
+	}
+	
+	private static int convertColorToInt(int colorIndex)
+	{
+		Color thisColor = colors[colorIndex];
+		int red = Byte.toUnsignedInt(thisColor.getRed());
+		int blue = Byte.toUnsignedInt(thisColor.getBlue());
+		int green = Byte.toUnsignedInt(thisColor.getGreen());
+	
+		//an int is 4 bytes.  this represents  00 RR BB GG
+		
+		return ((red<<16) | (green<<8) | blue);
+		
+		
 	}
 	
 	
