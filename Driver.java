@@ -11,7 +11,7 @@ public class Driver {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Gif test = new Gif("200.gif");
+		Gif test = new Gif(args.length>0  ? args[0]:"giphy.gif");
 		System.out.println("DONE");
 		
 		

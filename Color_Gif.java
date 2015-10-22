@@ -14,7 +14,7 @@ public class Color_Gif {
 	
 	public Color_Gif(int rgb)
 	{
-		red = (byte) (rgb>>16);
+		red = (byte) (rgb>>16 &0xFF);
 		green = (byte)(rgb >>8 & 0xFF);
 		blue = (byte)(rgb & 0xFF);
 	}

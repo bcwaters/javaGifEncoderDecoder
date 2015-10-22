@@ -17,25 +17,23 @@ public class ColorConverter {
 		Color.RGBtoHSB(Byte.toUnsignedInt(rgb.getRed()), Byte.toUnsignedInt(rgb.getGreen()), Byte.toUnsignedInt(rgb.getBlue()), colorToHsv);
 		ArrayList<Color_Gif> pallete = new ArrayList<Color_Gif>();
 		
-		pallete.add(new Color_Gif(0x3e311e));
-		pallete.add(new Color_Gif(0x514433));
-		pallete.add(new Color_Gif(0x718c85));
-		pallete.add(new Color_Gif(0x49706d));
-		pallete.add(new Color_Gif(0xad8458));
-		pallete.add(new Color_Gif(0xd2a059));
-		pallete.add(new Color_Gif(0x161618));
-		pallete.add(new Color_Gif(0xbe3403));
-		pallete.add(new Color_Gif(0xed713e));
-		pallete.add(new Color_Gif(0x432314));
-		pallete.add(new Color_Gif(0xce914e));
-		pallete.add(new Color_Gif(0x28130e));
-		pallete.add(new Color_Gif(0x195b69));
-		pallete.add(new Color_Gif(0x2d717e));
-		pallete.add(new Color_Gif(0x442d1d));
-		pallete.add(new Color_Gif(0xc0a055));
-		pallete.add(new Color_Gif(0x941907));
+		
+	
+		pallete.add(new Color_Gif(0x3D9e7c));
+		pallete.add(new Color_Gif(0xEcb15c));
+		pallete.add(new Color_Gif(0xEC8a5c));
+/*
+
+		pallete.add(new Color_Gif(0x426f99));
+		pallete.add(new Color_Gif(0xAA491a));
+		pallete.add(new Color_Gif(0xD19237));
+	*/	//pallete.add(new Color_Gif(0x6e9e6b));
+		
+		
+		
 		
 		float currentSmallest = 1;
+		float keeper = 1;
 		
 		for(Color_Gif c : pallete)
 		{
@@ -43,11 +41,14 @@ public class ColorConverter {
 			float cFloat = rgbToHsv(c)[0];
 			if(Math.abs(temp - cFloat)<currentSmallest)
 			{
-				currentSmallest = cFloat;
+				currentSmallest = Math.abs(temp - cFloat);
+				keeper = cFloat;
 			}
+			
+			System.out.println("input " + temp*360 + " current: " + cFloat*360 + " keeper: " + keeper);
 		}
 		
-		return Color.HSBtoRGB(currentSmallest, colorToHsv[1], colorToHsv[2]);
+		return Color.HSBtoRGB(keeper, colorToHsv[1], colorToHsv[2]);
 	}
 	
 	
